@@ -18,39 +18,54 @@ async function fetchBestMovie() {
     bestMovieImg.innerHTML = `<img src="${bestMovie.image_url}" alt="Best Movie Image">`;
     
     const bestMovieTitle = document.querySelector('.best-movie-title');
-    bestMovieTitle.textContent = bestMovie.title;
+    bestMovieTitle.textContent = bestMovie.original_title;
 
     const bestMovieDescription = document.querySelector('.best-movie-description');
     bestMovieDescription.textContent = bestMovie.description;
     
 }
 
-async function fetchOtherBest() {
+async function fetchMovies(category) {
 
     const params = new URLSearchParams({
         page_size: 6,
         sort_by: '-imdb_score',
-    });
+        });
+    
+    if (category) {
+            params.append('genre', category);
+        }
 
     const reponse = await fetch(`${baseTitleURL}?${params.toString()}`);
     const data = await reponse.json();
-    
-    const template = document.getElementById('movie-card-template');
-
-    data.results.forEach(movie => {
-        
-        const clone = template.content.cloneNode(true);
-
-        clone.querySelector('.movie-image').src = movie.image_url;
-        clone.querySelector('.movie-title').textContent = movie.title;
-        document.getElementById('other-best').appendChild(clone);
-    })
-
-    afficherFilms();
+    return data;
 }
 
-const afficherFilms = () => {
-    const cards = document.querySelectorAll('.movie-card');
+async function fetchBestMovies() {
+    const data = await fetchMovies();
+    addMoviestoContainer(data, 'other-best-container');
+    console.log(data);
+}
+    
+const addMoviestoContainer = (data, container) => {
+    const template = document.getElementById('movie-card-template');
+    const sectionContainer = document.getElementById(container);
+
+    data.results.forEach(movie => {
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.movie-image').src = movie.image_url;
+        clone.querySelector('.movie-title').textContent = movie.title;
+        sectionContainer.appendChild(clone);
+    });
+    afficherFilms(container);
+}
+
+const afficherFilms = (containerSelector) => {
+    const container = document.getElementById(containerSelector);
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.movie-card');
+    const btnVoirPlus = container.closest('section').querySelector('.voir-plus');
     
     cards.forEach((card, index) => {
         if (index >= 2 && index < 4) {
@@ -60,15 +75,16 @@ const afficherFilms = () => {
         }
     });
     
-    document.querySelector('.voir-plus').addEventListener('click', function() {
-        cards.forEach((card, index) => {
-            if (index >= 2) {
-                card.classList.toggle('!block');
-            }
+    if (btnVoirPlus) {
+        btnVoirPlus.addEventListener('click', function() {
+            cards.forEach((card, index) => {
+                if (index >= 2) {
+                    card.classList.toggle('!block');
+                }
+            });
+            this.textContent = this.textContent.trim() === 'Voir plus' ? 'Voir moins' : 'Voir plus';
         });
-        
-        this.textContent = this.textContent === 'Voir plus' ? 'Voir moins' : 'Voir plus';
-    });
+    }
 };
 
 const catList = document.querySelectorAll('.cat');
@@ -85,8 +101,57 @@ async function getAllCat() {
     return catList;
 }
 
+async function populateCategorySelect1() {
+    const categories = await getAllCat();
+    const select1 = document.getElementById('choix-cat1');
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        select1.appendChild(option);
+    });
+}
 
+async function populateCategorySelect2() {
+    const categories = await getAllCat();
+    const select2 = document.getElementById('choix-cat2');
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        select2.appendChild(option);
+    });
+}
+
+const fetchCategory = () => {
+    const selectCategory1 = document.getElementById('choix-cat1');
+    const selectCategory2 = document.getElementById('choix-cat2');
+    cat1Container = document.getElementById('cat1-container');
+    cat2Container = document.getElementById('cat2-container');
+
+    selectCategory1.addEventListener('change', async () => {
+        const selectedCategory1 = selectCategory1.value
+        if (selectedCategory1) {
+            data1 = await fetchMovies(selectedCategory1);
+            cat1Container.innerHTML = '';
+            addMoviestoContainer(data1, 'cat1-container');
+        }
+    }
+    )
+
+    selectCategory2.addEventListener('change', async () => {
+        const selectedCategory2 = selectCategory2.value
+        if (selectedCategory2) {
+            data2 = await fetchMovies(selectedCategory2);
+            cat2Container.innerHTML = '';
+            addMoviestoContainer(data2, 'cat2-container');
+        }
+    }
+    )
+}
 
 fetchBestMovie();
-fetchOtherBest();
-getAllCat();
+fetchBestMovies();
+populateCategorySelect1();
+populateCategorySelect2();
+fetchCategory();

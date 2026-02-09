@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <div class="mx-16">
+    <div class="mx-auto px-16 lg:max-w-6xl mb-8">
 
         <!-- SCREEN DISPLAY -->
         <span class="text-4xl md:hidden lg:hidden">MOBILE</span>
@@ -44,7 +44,7 @@
         <main>
             <div class="flex flex-col gap-8">
                 <section id="best-movie" class="flex flex-col gap-8">
-                    <h1 class="pt-8 flex justify-center text-4xl font-semibold">
+                    <h1 class="pt-8 flex text-3xl md:text-4xl lg:text-5xl font-semibold">
                         Meilleur film
                     </h1>
                     <div class="border-black border-8">
@@ -64,11 +64,12 @@
                         </div>
                     </div>
                 </section>
-                <section class="flex flex-col gap-8">
-                    <h1 class="flex justify-center text-4xl font-semibold">
+
+                <section id="other-best" class="flex flex-col gap-8">
+                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold">
                         Films les mieux notés
                     </h1>
-                    <div id="other-best" class="flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+                    <div id="other-best-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
                         <template id="movie-card-template">
                             <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
                                 <img class="movie-image w-full h-full object-cover" src="" alt="">
@@ -85,20 +86,39 @@
                         Voir plus
                     </button>
                 </section>
-                <section>
-                    <label for="mon-choix">Choisissez une option :</label>
 
-                    <select name="options" id="mon-choix">
-                        <option value="">--Veuillez choisir une option--</option>
-                        <option value="pomme">Pomme</option>
-                        <option value="banane">Banane</option>
-                        <option value="cerise">Cerise</option>
-                    </select>
+                <section id="cat-select1" class="select flex flex-col gap-8">
+                    <div class="flex gap-4">
+                        <label for="mon-choix1" class="text-3xl md:text-4xl lg:text-5xl font-semibold">Autres :</label>
+                        <select name="options" id="choix-cat1" class="border border-black text-4xl font-semibold">
+                            <option value="">Choisir une catégorie</option>
+                        </select>
+                    </div>
+                    <div id="cat1-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+
+                    </div>
+                    <button class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
+                        Voir plus
+                    </button>
+                </section>
+
+                <section id="cat-select2" class="select flex flex-col gap-8">
+                    <div class="flex gap-4">
+                        <label for="mon-choix2" class="text-3xl md:text-4xl lg:text-5xl font-semibold">Autres :</label>
+                        <select name="options" id="choix-cat2" class="border border-black text-4xl font-semibold">
+                            <option value="">Choisir une catégorie</option>
+                        </select>
+                    </div>
+                    <div id="cat2-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+
+                    </div>
+                    <button class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
+                        Voir plus
+                    </button>
                 </section>
             </div>
         </main>
         <footer>
-
         </footer>
     </div>
     <script src="movies.js"></script>
