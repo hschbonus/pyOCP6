@@ -1,5 +1,6 @@
 const baseTitleURL = 'http://localhost:8000/api/v1/titles/';
 const baseGenreURL = 'http://localhost:8000/api/v1/genres/';
+const fallbackImg = 'assets/dude.png';
 
 async function fetchBestMovie() {
 
@@ -15,13 +16,18 @@ async function fetchBestMovie() {
     const bestMovie = await bestMovieResponse.json();
 
     const bestMovieImg = document.querySelector('.best-movie-img');
-    bestMovieImg.innerHTML = `<img src="${bestMovie.image_url}" alt="Best Movie Image">`;
+    bestMovieImg.src = bestMovie.image_url;
+    bestMovieImg.alt = bestMovie.original_title;
+    bestMovieImg.onerror = () => { bestMovieImg.src = fallbackImg; };    
     
     const bestMovieTitle = document.querySelector('.best-movie-title');
     bestMovieTitle.textContent = bestMovie.original_title;
 
     const bestMovieDescription = document.querySelector('.best-movie-description');
     bestMovieDescription.textContent = bestMovie.description;
+
+    const bestMovieId = document.getElementById('best-movie-id');
+    bestMovieId.textContent = bestMovie.id;
     
 }
 
@@ -44,7 +50,6 @@ async function fetchMovies(category) {
 async function fetchBestMovies() {
     const data = await fetchMovies();
     addMoviestoContainer(data, 'other-best-container');
-    console.log(data);
 }
     
 const addMoviestoContainer = (data, container) => {
@@ -53,8 +58,11 @@ const addMoviestoContainer = (data, container) => {
 
     data.results.forEach(movie => {
         const clone = template.content.cloneNode(true);
-        clone.querySelector('.movie-image').src = movie.image_url;
+        const movieImg = clone.querySelector('.movie-image');
+        movieImg.src = movie.image_url || fallbackImg;
+        movieImg.onerror = () => { movieImg.src = fallbackImg; };
         clone.querySelector('.movie-title').textContent = movie.title;
+        clone.querySelector('.card-id').textContent = movie.id;
         sectionContainer.appendChild(clone);
     });
     afficherFilms(container);
@@ -123,11 +131,11 @@ async function populateCategorySelect2() {
     });
 }
 
-const fetchCategory = () => {
+const fetchCategory = async () => {
     const selectCategory1 = document.getElementById('choix-cat1');
     const selectCategory2 = document.getElementById('choix-cat2');
-    cat1Container = document.getElementById('cat1-container');
-    cat2Container = document.getElementById('cat2-container');
+    const cat1Container = document.getElementById('cat1-container');
+    const cat2Container = document.getElementById('cat2-container');
 
     selectCategory1.addEventListener('change', async () => {
         const selectedCategory1 = selectCategory1.value
@@ -148,6 +156,15 @@ const fetchCategory = () => {
         }
     }
     )
+
+    mysteryData = await fetchMovies('Mystery');
+    addMoviestoContainer(mysteryData, 'mystery-container');
+
+    actionData = await fetchMovies('Action');
+    addMoviestoContainer(actionData, 'action-container');
+
+
+    
 }
 
 fetchBestMovie();

@@ -30,9 +30,9 @@
     <div class="mx-auto px-16 lg:max-w-6xl mb-8">
 
         <!-- SCREEN DISPLAY -->
-        <span class="text-4xl md:hidden lg:hidden">MOBILE</span>
-        <span class="text-4xl hidden md:block lg:hidden">TABLET</span>
-        <span class="text-4xl hidden md:hidden lg:block">DESKTOP</span>
+        <span class="text-4xl md:hidden lg:hidden fixed border border-black bg-blue-200 z-50">MOBILE</span>
+        <span class="text-4xl hidden md:block lg:hidden fixed border border-black bg-blue-200 z-50">TABLET</span>
+        <span class="text-4xl hidden md:hidden lg:block fixed border border-black bg-blue-200 z-50">DESKTOP</span>
 
         <header>
             <div class="h-[137px] lg:h-[122px] bg-[#61787F] border-black border mt-12 flex justify-center md:pl-4 md:justify-start items-center gap-16">
@@ -44,21 +44,18 @@
         <main>
             <div class="flex flex-col gap-8">
                 <section id="best-movie" class="flex flex-col gap-8">
-                    <h1 class="pt-8 flex text-3xl md:text-4xl lg:text-5xl font-semibold">
+                    <h1 class="pt-8 flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
                         Meilleur film
                     </h1>
+                    <span id="best-movie-id" class="card-id hidden"></span>
                     <div class="border-black border-8">
-                        <div class="p-4 flex flex-col gap-4">
-                            <div class="best-movie-img self-center">
-                                
+                        <div class="relative p-4 flex flex-col md:flex-row gap-4">
+                            <img class="best-movie-img self-center w-full aspect-[5/4] object-cover md:w-1/4 md:aspect-auto"></img>
+                            <div class="flex flex-col gap-4">
+                                <div class="best-movie-title text-4xl font-semibold md:font-normal lg:font-5xl"></div>
+                                <div class="best-movie-description font-extralight text-base md:text-2xl lg:text-3xl"></div>
                             </div>
-                            <div class="best-movie-title text-4xl font-semibold">
-                                
-                            </div>
-                            <div class="best-movie-description font-extralight text-base">
-                                
-                            </div>
-                            <button class="self-center bg-[#FA0B0B] py-3 px-10 rounded-full text-white font-medium text-sm">
+                            <button class="open-modal-btn md:absolute bottom-4 right-4 self-center bg-[#FA0B0B] py-3 px-10 lg:px-12 lg:py-4 rounded-full lg:rounded-[25px] text-white font-medium text-sm md:text-xl lg:text-2xl">
                                 Détails
                             </button>
                         </div>
@@ -66,16 +63,17 @@
                 </section>
 
                 <section id="other-best" class="flex flex-col gap-8">
-                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold">
+                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
                         Films les mieux notés
                     </h1>
                     <div id="other-best-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
                         <template id="movie-card-template">
                             <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
+                                <span class="card-id hidden"></span>
                                 <img class="movie-image w-full h-full object-cover" src="" alt="">
                                 <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
                                     <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
-                                    <button class="movie-details text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
+                                    <button class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
                                         Détails
                                     </button>
                                 </div>
@@ -87,10 +85,60 @@
                     </button>
                 </section>
 
+                <section id="mystery" class="flex flex-col gap-8">
+                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
+                        Mystery
+                    </h1>
+                    <div id="mystery-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+                        <template id="movie-card-template">
+                            <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
+                                <span class="card-id hidden"></span>
+                                <img class="movie-image w-full h-full object-cover" src="" alt="">
+                                <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
+                                    <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
+                                    <button
+                                        class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
+                                        Détails
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <button
+                        class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
+                        Voir plus
+                    </button>
+                </section>
+
+                <section id="action" class="flex flex-col gap-8">
+                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
+                        Action
+                    </h1>
+                    <div id="action-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+                        <template id="movie-card-template">
+                            <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
+                                <span class="card-id hidden"></span>
+                                <img class="movie-image w-full h-full object-cover" src="" alt="">
+                                <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
+                                    <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
+                                    <button
+                                        class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
+                                        Détails
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <button
+                        class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
+                        Voir plus
+                    </button>
+                </section>
+
                 <section id="cat-select1" class="select flex flex-col gap-8">
-                    <div class="flex gap-4">
-                        <label for="mon-choix1" class="text-3xl md:text-4xl lg:text-5xl font-semibold">Autres :</label>
-                        <select name="options" id="choix-cat1" class="border border-black text-4xl font-semibold">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <label for="mon-choix1" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
+                        <select name="options" id="choix-cat1" class="border border-black text-3xl md:text-4xl font-semibold w-fit self-center">
                             <option value="">Choisir une catégorie</option>
                         </select>
                     </div>
@@ -103,9 +151,9 @@
                 </section>
 
                 <section id="cat-select2" class="select flex flex-col gap-8">
-                    <div class="flex gap-4">
-                        <label for="mon-choix2" class="text-3xl md:text-4xl lg:text-5xl font-semibold">Autres :</label>
-                        <select name="options" id="choix-cat2" class="border border-black text-4xl font-semibold">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <label for="mon-choix2" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
+                        <select name="options" id="choix-cat2" class="border border-black text-3xl md:text-4xl font-semibold w-fit self-center">
                             <option value="">Choisir une catégorie</option>
                         </select>
                     </div>
@@ -118,9 +166,74 @@
                 </section>
             </div>
         </main>
+
+        <!-- MODALE -->
+        <aside id="modale" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+            <div class="relative lg:hidden bg-white p-8 border border-black border-8 w-[70%] flex flex-col gap-8">
+                <div class="flex flex-col gap-8">
+                    <div class="text-2xl flex flex-col">
+                        <h2 class="modale-h2 text-2xl font-semibold text-5xl mb-4"></h2>
+                        <span class="date-genre"></span>
+                        <span class="duration-countries"></span>
+                        <span class="imdb-score"></span>
+                        <span class="income"></span>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <span class="font-normal text-2xl">Réalisé par:</span>
+                        <span class="director font-light text-2xl"></span>
+                        <span class="modale-description font-light text-2xl"></span>
+                    </div>
+                    
+                    <img class="modale-img object-contain"></img>
+                    
+                    <div class="flex flex-col">
+                        <span class="font-normal text-xl">Avec:</span>
+                        <span class="casting font-light text-xl"></span>
+                    </div>
+                    
+                    <button class="close-modal-btn absolute top-8 right-4 w-[32px] h-[32px] text-2xl">
+                        ❌
+                    </button>
+                </div>
+            </div>
+
+            <div class="hidden lg:block bg-white p-8 border border-black border-8 w-[80%] flex flex-col gap-8">
+                <div class="flex place-content-between">
+                    <div class="space-y-8">
+                        <div class="text-2xl flex flex-col">
+                            <h2 class="modale-h2 text-2xl font-semibold text-5xl mb-4"></h2>
+                            <span class="date-genre"></span>
+                            <span class="duration-countries"></span>
+                            <span class="imdb-score"></span>
+                            <span class="income"></span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-normal text-2xl">Réalisé par:</span>
+                            <span class="director font-light text-2xl pb-4"></span>
+                        </div>
+                    </div>
+                    <img class="modale-img object-fit"></img>
+                </div>
+
+                <span class="modale-description font-light text-2xl"></span>
+
+
+                <div class="flex flex-col">
+                    <span class="font-normal text-xl">Avec:</span>
+                    <span class="casting font-light text-xl"></span>
+                </div>
+                
+                <button class="close-modal-btn py-2 px-4 rounded-full text-white bg-[#FA0B0B] font-medium self-center">
+                    Fermer
+                </button>
+            </div>
+        </aside>
+
         <footer>
         </footer>
     </div>
     <script src="movies.js"></script>
+    <script src="modales.js"></script>
 </body>
 </html>
