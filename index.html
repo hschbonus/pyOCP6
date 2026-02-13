@@ -50,7 +50,7 @@
                     <span id="best-movie-id" class="card-id hidden"></span>
                     <div class="border-black border-8">
                         <div class="relative p-4 flex flex-col md:flex-row gap-4">
-                            <img class="best-movie-img self-center w-full aspect-[5/4] object-cover md:w-1/4 md:aspect-auto"></img>
+                            <img src="" alt ="" class="best-movie-img self-center w-full aspect-[5/4] object-cover md:w-1/4 md:aspect-auto">
                             <div class="flex flex-col gap-4">
                                 <div class="best-movie-title text-4xl font-semibold md:font-normal lg:font-5xl"></div>
                                 <div class="best-movie-description font-extralight text-base md:text-2xl lg:text-3xl"></div>
@@ -90,19 +90,7 @@
                         Mystery
                     </h1>
                     <div id="mystery-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
-                        <template id="movie-card-template">
-                            <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
-                                <span class="card-id hidden"></span>
-                                <img class="movie-image w-full h-full object-cover" src="" alt="">
-                                <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
-                                    <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
-                                    <button
-                                        class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
-                                        Détails
-                                    </button>
-                                </div>
-                            </div>
-                        </template>
+
                     </div>
                     <button
                         class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
@@ -115,19 +103,7 @@
                         Action
                     </h1>
                     <div id="action-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
-                        <template id="movie-card-template">
-                            <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
-                                <span class="card-id hidden"></span>
-                                <img class="movie-image w-full h-full object-cover" src="" alt="">
-                                <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
-                                    <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
-                                    <button
-                                        class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
-                                        Détails
-                                    </button>
-                                </div>
-                            </div>
-                        </template>
+
                     </div>
                     <button
                         class="voir-plus self-center bg-[#FA0B0B] py-1 w-[220px] rounded-full text-white font-medium text-md lg:hidden">
@@ -168,8 +144,8 @@
         </main>
 
         <!-- MODALE -->
-        <aside id="modale" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
-            <div class="relative lg:hidden bg-white p-8 border border-black border-8 w-[70%] flex flex-col gap-8">
+        <aside id="modale" class="hidden fixed inset-0 bg-black/50 flex items-end md:items-center pb-8 justify-center ">
+            <div class="relative lg:hidden bg-white p-8 border border-black border-8 w-[80vw] max-h-[90vh] overflow-y-auto flex flex-col gap-8">
                 <div class="flex flex-col gap-8">
                     <div class="text-2xl flex flex-col">
                         <h2 class="modale-h2 text-2xl font-semibold text-5xl mb-4"></h2>
@@ -185,7 +161,7 @@
                         <span class="modale-description font-light text-2xl"></span>
                     </div>
                     
-                    <img class="modale-img object-contain"></img>
+                    <img src="" alt="" class="modale-img object-contain">
                     
                     <div class="flex flex-col">
                         <span class="font-normal text-xl">Avec:</span>
@@ -198,7 +174,7 @@
                 </div>
             </div>
 
-            <div class="hidden lg:block bg-white p-8 border border-black border-8 w-[80%] flex flex-col gap-8">
+            <div class="hidden lg:flex bg-white p-8 border border-black border-8 w-[50%] max-w-4xl flex-col gap-8 overflow-hidden">
                 <div class="flex place-content-between">
                     <div class="space-y-8">
                         <div class="text-2xl flex flex-col">
@@ -210,21 +186,20 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="font-normal text-2xl">Réalisé par:</span>
-                            <span class="director font-light text-2xl pb-4"></span>
+                            <span class="director font-light text-2xl"></span>
                         </div>
                     </div>
-                    <img class="modale-img object-fit"></img>
+                    <img src="" alt="" class="modale-img object-contain max-h-[350px]">
                 </div>
 
                 <span class="modale-description font-light text-2xl"></span>
-
 
                 <div class="flex flex-col">
                     <span class="font-normal text-xl">Avec:</span>
                     <span class="casting font-light text-xl"></span>
                 </div>
                 
-                <button class="close-modal-btn py-2 px-4 rounded-full text-white bg-[#FA0B0B] font-medium self-center">
+                <button class="close-modal-btn py-2 px-20 rounded-full text-white bg-[#FA0B0B] font-medium text-xl self-center">
                     Fermer
                 </button>
             </div>
