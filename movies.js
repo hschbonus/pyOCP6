@@ -95,8 +95,6 @@ const afficherFilms = (containerSelector) => {
     }
 };
 
-const catList = document.querySelectorAll('.cat');
-
 async function getAllCat() {
 
     const params = new URLSearchParams({
@@ -140,7 +138,7 @@ const fetchCategory = async () => {
     selectCategory1.addEventListener('change', async () => {
         const selectedCategory1 = selectCategory1.value
         if (selectedCategory1) {
-            data1 = await fetchMovies(selectedCategory1);
+            const data1 = await fetchMovies(selectedCategory1);
             cat1Container.innerHTML = '';
             addMoviestoContainer(data1, 'cat1-container');
         }
@@ -150,17 +148,17 @@ const fetchCategory = async () => {
     selectCategory2.addEventListener('change', async () => {
         const selectedCategory2 = selectCategory2.value
         if (selectedCategory2) {
-            data2 = await fetchMovies(selectedCategory2);
+            const data2 = await fetchMovies(selectedCategory2);
             cat2Container.innerHTML = '';
             addMoviestoContainer(data2, 'cat2-container');
         }
     }
     )
 
-    mysteryData = await fetchMovies('Mystery');
+    const mysteryData = await fetchMovies('Mystery');
     addMoviestoContainer(mysteryData, 'mystery-container');
 
-    actionData = await fetchMovies('Action');
+    const actionData = await fetchMovies('Action');
     addMoviestoContainer(actionData, 'action-container');
 
 

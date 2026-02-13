@@ -1,7 +1,7 @@
 const modal = document.getElementById('modale');
 
 document.addEventListener('click', (e) => {
-    const openBtn = e.target.closest('.open-modal-btn');
+    const openBtn = e.target.closest('.open-modal-btn') || e.target.closest('.movie-image');
     if (openBtn) {
         modal.classList.remove('hidden');
     }
@@ -13,7 +13,7 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', async (e) => {
-    const openBtn = e.target.closest('.open-modal-btn');
+    const openBtn = e.target.closest('.open-modal-btn') || e.target.closest('.movie-image');
     if (!openBtn) return;
 
     const card = openBtn.closest('.movie-card') || openBtn.closest('section');
@@ -30,9 +30,10 @@ document.addEventListener('click', async (e) => {
             dateGenre.textContent = `${data.year} - ${data.genres.join(', ')}`;
         });
 
-        const modaleDurationCountries = modal.querySelectorAll('.duration-countries');
-        modaleDurationCountries.forEach(durationCountries => { 
-            durationCountries.textContent = `${data.duration} minutes (${data.countries.join(' / ')})`;
+        const modaleRatedDurationCountries = modal.querySelectorAll('.rated-duration-countries');
+        const rated = data.rated && data.rated !== 'Not rated or unkown rating' ? data.rated : 'Non classifié';
+        modaleRatedDurationCountries.forEach(el => {
+            el.textContent = `${rated} - ${data.duration} minutes (${data.countries.join(' / ')})`;
         });
 
         const modaleImdbScore = modal.querySelectorAll('.imdb-score');

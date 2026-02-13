@@ -50,7 +50,7 @@
                     <span id="best-movie-id" class="card-id hidden"></span>
                     <div class="border-black border-8">
                         <div class="relative p-4 flex flex-col md:flex-row gap-4">
-                            <img src="" alt ="" class="best-movie-img self-center w-full aspect-[5/4] object-cover md:w-1/4 md:aspect-auto">
+                            <img src="assets/dude.png" alt="" class="best-movie-img self-center w-full aspect-[5/4] object-cover md:w-1/4 md:aspect-auto">
                             <div class="flex flex-col gap-4">
                                 <div class="best-movie-title text-4xl font-semibold md:font-normal lg:font-5xl"></div>
                                 <div class="best-movie-description font-extralight text-base md:text-2xl lg:text-3xl"></div>
@@ -63,14 +63,14 @@
                 </section>
 
                 <section id="other-best" class="flex flex-col gap-8">
-                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
+                    <h2 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
                         Films les mieux notés
-                    </h1>
+                    </h2>
                     <div id="other-best-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
                         <template id="movie-card-template">
                             <div class="movie-card aspect-square bg-red-100 overflow-hidden relative">
                                 <span class="card-id hidden"></span>
-                                <img class="movie-image w-full h-full object-cover" src="" alt="">
+                                <img class="movie-image w-full h-full object-cover" src="assets/dude.png" alt="">
                                 <div class="absolute top-12 inset-x-0 bg-black/50 flex flex-col place-content-between">
                                     <h2 class="movie-title text-white text-2xl w-fit font-semibold ml-4 mt-8 mb-4"></h2>
                                     <button class="open-modal-btn text-white text-sm w-fit font-medium py-2 px-8 mb-4 mr-4 rounded-full bg-[#2D2C2C] self-end">
@@ -86,9 +86,9 @@
                 </section>
 
                 <section id="mystery" class="flex flex-col gap-8">
-                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
+                    <h2 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
                         Mystery
-                    </h1>
+                    </h2>
                     <div id="mystery-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
 
                     </div>
@@ -99,9 +99,9 @@
                 </section>
 
                 <section id="action" class="flex flex-col gap-8">
-                    <h1 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
+                    <h2 class="flex text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">
                         Action
-                    </h1>
+                    </h2>
                     <div id="action-container" class="m-container flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8">
 
                     </div>
@@ -113,7 +113,7 @@
 
                 <section id="cat-select1" class="select flex flex-col gap-8">
                     <div class="flex flex-col md:flex-row gap-4">
-                        <label for="mon-choix1" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
+                        <label for="choix-cat1" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
                         <select name="options" id="choix-cat1" class="border border-black text-3xl md:text-4xl font-semibold w-fit self-center">
                             <option value="">Choisir une catégorie</option>
                         </select>
@@ -128,7 +128,7 @@
 
                 <section id="cat-select2" class="select flex flex-col gap-8">
                     <div class="flex flex-col md:flex-row gap-4">
-                        <label for="mon-choix2" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
+                        <label for="choix-cat2" class="text-3xl md:text-4xl lg:text-5xl font-semibold self-center md:self-start">Autres :</label>
                         <select name="options" id="choix-cat2" class="border border-black text-3xl md:text-4xl font-semibold w-fit self-center">
                             <option value="">Choisir une catégorie</option>
                         </select>
@@ -150,7 +150,7 @@
                     <div class="text-2xl flex flex-col">
                         <h2 class="modale-h2 text-2xl font-semibold text-5xl mb-4"></h2>
                         <span class="date-genre"></span>
-                        <span class="duration-countries"></span>
+                        <span class="rated-duration-countries"></span>
                         <span class="imdb-score"></span>
                         <span class="income"></span>
                     </div>
@@ -161,8 +161,8 @@
                         <span class="modale-description font-light text-2xl"></span>
                     </div>
                     
-                    <img src="" alt="" class="modale-img object-contain">
-                    
+                    <img src="assets/dude.png" alt="" class="modale-img object-contain">
+
                     <div class="flex flex-col">
                         <span class="font-normal text-xl">Avec:</span>
                         <span class="casting font-light text-xl"></span>
@@ -174,13 +174,13 @@
                 </div>
             </div>
 
-            <div class="hidden lg:flex bg-white p-8 border border-black border-8 w-[50%] max-w-4xl flex-col gap-8 overflow-hidden">
+            <div class="hidden lg:flex bg-white p-8 border border-black border-8 w-[50%] max-w-4xl flex-col gap-8 overflow-y-auto">
                 <div class="flex place-content-between">
                     <div class="space-y-8">
                         <div class="text-2xl flex flex-col">
                             <h2 class="modale-h2 text-2xl font-semibold text-5xl mb-4"></h2>
                             <span class="date-genre"></span>
-                            <span class="duration-countries"></span>
+                            <span class="rated-duration-countries"></span>
                             <span class="imdb-score"></span>
                             <span class="income"></span>
                         </div>
@@ -189,7 +189,7 @@
                             <span class="director font-light text-2xl"></span>
                         </div>
                     </div>
-                    <img src="" alt="" class="modale-img object-contain max-h-[350px]">
+                    <img src="assets/dude.png" alt="" class="modale-img object-contain max-h-[350px]">
                 </div>
 
                 <span class="modale-description font-light text-2xl"></span>
@@ -204,11 +204,8 @@
                 </button>
             </div>
         </aside>
-
-        <footer>
-        </footer>
     </div>
-    <script src="movies.js"></script>
-    <script src="modales.js"></script>
+    <script src="movies.js" defer></script>
+    <script src="modales.js" defer></script>
 </body>
 </html>
