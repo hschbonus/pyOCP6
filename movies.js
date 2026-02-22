@@ -1,6 +1,6 @@
 const baseTitleURL = 'http://localhost:8000/api/v1/titles/';
 const baseGenreURL = 'http://localhost:8000/api/v1/genres/';
-const fallbackImg = 'assets/dude.png';
+const fallbackImg = 'assets/bookplaceholder.jpg';
 
 async function fetchBestMovie() {
 

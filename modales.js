@@ -58,8 +58,8 @@ document.addEventListener('click', async (e) => {
 
         const modaleImage = modal.querySelectorAll('.modale-img');
         modaleImage.forEach(image => {
-            image.src = data.image_url || 'assets/dude.png';
-            image.onerror = () => { image.src = 'assets/dude.png'; };
+            image.src = data.image_url || 'assets/bookplaceholder.jpg';
+            image.onerror = () => { image.src = 'assets/bookplaceholder.jpg'; };
         });
 
         const modaleCasting = modal.querySelectorAll('.casting');
